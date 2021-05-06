@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/layout';
 import axios from 'axios';
+import AddUser from './adduser';
 
 export default function Home({users}) {
 
@@ -16,12 +17,15 @@ export default function Home({users}) {
 
       <main>
         <h3>Hello world</h3>
-        {users && users.map(user => (
-          <li key={user.id}>
-            <Link href={`/user/${user.id}`}><a>{user.username}</a></Link> 
-          </li>
-        )
-        )}
+        <div>
+          {users && users.map(user => (
+            <li key={user.id}>
+              <Link href={`/user/${user.id}`}><a>{user.username}</a></Link> 
+            </li>
+          )
+          )}
+        </div>
+        <AddUser/>
       </main>
       
     </Layout>
