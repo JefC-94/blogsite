@@ -15,26 +15,35 @@ export default function Home({users}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h3>Hello world</h3>
-        <div>
-          <div className={styles.userList}>
+      <div className={styles.usersContainer}>
+        <h3>Our Users</h3>
+        <div className={styles.tableWrap}>
+          <table className={styles.userTable}>
+          <thead>
+              <tr>
+                <th><span>Username</span></th>
+                <th><span>Password</span></th>
+                <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
           {users && users.map(user => (
-            <div className={styles.userItem} key={user.id}>
-              <span>{user.username}</span>&nbsp;
-              <Link href={`/user/${user.id}/view`}>
-                <a>View</a>
-              </Link>&nbsp;
-              <Link href={`/user/${user.id}/update`}>
-                <a>Update</a>
-              </Link>
-            </div>
+            <tr key={user.id}>
+              <td><Link href={`/user/${user.id}/view`}><a className="link black">{user.username}</a></Link></td>
+              <td><span>{user.password}</span></td>
+              <td className={styles.flexCell}>
+                <Link href={`/user/${user.id}/update`}>
+                  <a className="button">Update</a>
+                </Link>
+              </td>
+            </tr>
           )
           )}
-          </div>
+          </tbody>
+          </table>
         </div>
-        <Link href='/user/create'><a>Create user</a></Link>
-      </main>
+        <Link href='/user/create'><a className="link backtoindex">Create user</a></Link>
+      </div>
       
     </Layout>
   )

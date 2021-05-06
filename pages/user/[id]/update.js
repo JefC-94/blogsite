@@ -42,6 +42,7 @@ export default function UpdateUser({user}) {
     
     return (
         <Layout>
+            <h3>Update user</h3>
             <form className={styles.userForm} onSubmit={onSubmitHandler} >
                 <div className={styles.formControl}>
                     <label htmlFor="nameField">Username</label>
@@ -52,14 +53,14 @@ export default function UpdateUser({user}) {
                     <input className={styles.passfield} type="text" name="passField" value={formData.passField} onChange={onChangeHandler} />
                 </div>
                 <div className={styles.formControl}>
-                    <button type="submit">Update user</button>
+                    <button type="submit" className="button">Update user</button>
                 </div>
                 <div className={styles.formControl}>
                     {error && <p className="error">Oops... Something went wrong.</p>}
                     {success && <p>This user has been updated!</p>}
                 </div>
             </form>
-            <Link href='/'>Back to users</Link>
+            <Link href='/'><a className="link backtoindex" >Back to users</a></Link>
         </Layout>
     )
 }

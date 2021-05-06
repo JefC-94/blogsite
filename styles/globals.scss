@@ -40,7 +40,8 @@ body{
 
 header, main, footer{
   padding:0 1em;
-  width:1000px;
+  width:500px;
+  margin:0 auto;
 }
 
 header{
@@ -60,9 +61,14 @@ footer{
   align-items:center;
 }
 
-@media screen and (max-width:1000px) {
+@media screen and (max-width:500px) {
   
   header, main, footer{
       width:100%;
   }
+}
+
+.backtoindex{
+  display:inline-block;
+  margin-top:2em;
 }

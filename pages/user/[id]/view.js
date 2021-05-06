@@ -23,9 +23,9 @@ export default function User({user}) {
             <div className={styles.userDetail}>
             <p>{user.username} {user.password}</p>
 
-            <button onClick={() => deleteUser()}>Delete</button>
+            <button className="button" onClick={() => deleteUser()}>Delete</button>
             </div>
-            <Link href="/"><a>Back to users</a></Link>
+            <Link href="/"><a className="link backtoindex" >Back to users</a></Link>
         </Layout>
     )
 }

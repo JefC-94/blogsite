@@ -40,7 +40,7 @@ export default function CreateUser() {
     
     return (
         <Layout>
-            <div>
+            <h3>Create user</h3>
             <form className={styles.userForm} onSubmit={onSubmitHandler} >
                 <div className={styles.formControl}>
                     <label htmlFor="nameField">Username</label>
@@ -51,15 +51,14 @@ export default function CreateUser() {
                     <input className={styles.passfield} type="text" name="passField" value={formData.passField} onChange={onChangeHandler} />
                 </div>
                 <div className={styles.formControl}>
-                    <button type="submit">Add user</button>
+                    <button type="submit" className="button">Add user</button>
                 </div>
                 <div className={styles.formControl}>
                     {error && <p className="error">Oops... Something went wrong.</p>}
                     {success && <p>New user has been created!</p>}
                 </div>
             </form>
-            </div>
-            <Link href='/'>Back to users</Link>
+            <Link href='/'><a className="link">Back to users</a></Link>
         </Layout>
     )
 }

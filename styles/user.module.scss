@@ -1,11 +1,37 @@
 
 // USER OVERVIEW STYLING
 
-div.userList{
-    
-    div.userItem{
-        padding:.5em 0;
-    }
+div.usersContainer{
+    max-width:500px;
+    margin:0 auto;
+}
+
+div.tableWrap{
+    margin:0em;
+}
+
+table.userTable{
+    width:100%;
+    border-collapse:collapse;
+
+        tr{
+            border:1px solid #ddd;
+            height:50px;
+
+            td, th{ 
+                padding-left:.5em;
+            }
+
+            th{
+                text-align:left;
+            }
+
+            td.flexCell{
+                a:not(:first-of-type){
+                    margin-left:1em;
+                }
+            }
+        }   
 }
 
 // USER ITEM IN TABLE + DETAIL USER ITEM
@@ -18,8 +44,8 @@ div.userDetail{
 //FORM STYLING
 
 .userForm{
-    margin:1em auto;
-    max-width:400px;
+    margin:0em auto;
+    max-width:500px;
     display:flex;
     flex-direction:column;
 
