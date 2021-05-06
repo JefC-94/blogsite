@@ -14,3 +14,56 @@ a {
 * {
   box-sizing: border-box;
 }
+
+html{
+  height:100vh;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  font-family: Avenir, Arial, sans-serif;
+  background:#f8f8f8;
+  color:#222;
+  margin:0;
+  padding:0;
+}
+
+#__next{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  min-height:100vh;
+}
+
+header, main, footer{
+  padding:0 1em;
+  width:1000px;
+}
+
+header{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+main{
+  flex:1;
+}
+
+footer{
+  height:50px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+@media screen and (max-width:1000px) {
+  
+  header, main, footer{
+      width:100%;
+  }
+}
