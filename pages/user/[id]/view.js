@@ -4,6 +4,7 @@ import React from 'react';
 import Layout from '../../../components/layout';
 import router from 'next/router';
 import styles from '../../../styles/user.module.scss';
+import Head from 'next/head';
 
 export default function User({user}) {
     
@@ -20,6 +21,12 @@ export default function User({user}) {
     
     return (
         <Layout>
+            <Head>
+                <title>User Detail: {user.username}</title>
+                <meta name="description" content="Not another blogsite" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+
             <div className={styles.userDetail}>
             <p>{user.username} {user.password}</p>
 

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, {useState} from 'react'
 import Layout from '../../components/layout';
 import styles from '../../styles/user.module.scss';
+import Head from 'next/head';
 
 export default function CreateUser() {
     
@@ -23,23 +24,34 @@ export default function CreateUser() {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        const request = await axios.post('/api/adduser', {
-            username: formData.nameField,
-            password: formData.passField
-        });
-        if(request.status === 200){
-            console.log(request.data.id);
-            setSuccess(true);
-            setError(false);
+        if(formData.nameField && formData.passField){
+            const request = await axios.post('/api/adduser', {
+                username: formData.nameField,
+                password: formData.passField
+            });
+            if(request.status === 200){
+                console.log(request.data.id);
+                setSuccess(true);
+                setError(false);
+            } else {
+                console.log('something went wrong');
+                setError({message: "something went wrong"});
+                setSuccess(false);
+            }
         } else {
-            console.log('something went wrong');
-            setError(true);
+            setError({message: "Fill in username and password please."});
             setSuccess(false);
         }
     }
     
     return (
         <Layout>
+            <Head>
+                <title>Create user</title>
+                <meta name="description" content="Create a new user on this page" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+
             <h3>Create user</h3>
             <form className={styles.userForm} onSubmit={onSubmitHandler} >
                 <div className={styles.formControl}>
@@ -54,8 +66,8 @@ export default function CreateUser() {
                     <button type="submit" className="button">Add user</button>
                 </div>
                 <div className={styles.formControl}>
-                    {error && <p className="error">Oops... Something went wrong.</p>}
-                    {success && <p>New user has been created!</p>}
+                    {error && <p className="error">{error.message}</p>}
+                    {success && <p className="success">New user has been created!</p>}
                 </div>
             </form>
             <Link href='/'><a className="link">Back to users</a></Link>

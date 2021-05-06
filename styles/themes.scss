@@ -37,3 +37,19 @@ a.black{
         color:#111;
     }
 }
+
+p.success, p.error{
+    border-radius:5px;
+    padding:.7em 1em;
+}
+
+p.success{
+    background-color:rgb(111, 218, 111);
+    border:1px solid rgb(45, 141, 26);
+    border-radius:5px;
+}
+
+p.error{
+    background-color:rgb(211, 86, 86);
+    border:1px solid rgb(189, 45, 45);
+}

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Head from 'next/head';
 import Link from 'next/link';
 import router from 'next/router';
 import React, {useState} from 'react'
@@ -28,7 +29,6 @@ export default function UpdateUser({user}) {
             username: formData.nameField,
             password: formData.passField
         });
-        console.log(request);
         if(request.status === 200){
             console.log('user updated');
             setSuccess(true);
@@ -42,6 +42,11 @@ export default function UpdateUser({user}) {
     
     return (
         <Layout>
+            <Head>
+                <title>Update user: {user.username}</title>
+                <meta name="description" content="Update user" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <h3>Update user</h3>
             <form className={styles.userForm} onSubmit={onSubmitHandler} >
                 <div className={styles.formControl}>

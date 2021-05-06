@@ -1,11 +1,48 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/layout';
 import axios from 'axios';
 import styles from '../styles/user.module.scss';
+import Users from '../components/users/Users';
+import UserFilters from '../components/users/UserFilters';
 
 export default function Home({users}) {
+
+  const [sortedUsers, setSortedUsers] = useState(users);
+
+  const [filters, setFilters] = useState({
+    sort: "",
+    name: ""
+  });
+
+  useEffect(() => {
+    sortUsers();
+  }, [filters]);
+
+  function sortUsers(){
+    setSortedUsers([...users
+      .filter(user => {
+        if(filters.name){
+          return user.username.toLowerCase().startsWith(filters.name.toLowerCase());
+        } else {
+          return user;
+        }
+      })
+      .sort((a, b) => {
+        if(filters.sort === "A-Z"){
+          return a.username > b.username ? 1 : a.username < b.username ? -1 : 0
+        }
+        if(filters.sort === "Z-A"){
+          return a.username > b.username ? -1 : a.username < b.username ? 1 : 0
+        }
+        if(filters.sort === ""){
+          return a.id - b.id;
+        }
+      }
+    )
+    ]);
+  }
 
   return (
     <Layout>
@@ -17,31 +54,10 @@ export default function Home({users}) {
 
       <div className={styles.usersContainer}>
         <h3>Our Users</h3>
-        <div className={styles.tableWrap}>
-          <table className={styles.userTable}>
-          <thead>
-              <tr>
-                <th><span>Username</span></th>
-                <th><span>Password</span></th>
-                <th>Actions</th>
-              </tr>
-          </thead>
-          <tbody>
-          {users && users.map(user => (
-            <tr key={user.id}>
-              <td><Link href={`/user/${user.id}/view`}><a className="link black">{user.username}</a></Link></td>
-              <td><span>{user.password}</span></td>
-              <td className={styles.flexCell}>
-                <Link href={`/user/${user.id}/update`}>
-                  <a className="button">Update</a>
-                </Link>
-              </td>
-            </tr>
-          )
-          )}
-          </tbody>
-          </table>
-        </div>
+        
+        <UserFilters filters={filters} setFilters={setFilters} />
+        <Users sortedUsers={sortedUsers} />
+
         <Link href='/user/create'><a className="link backtoindex">Create user</a></Link>
       </div>
       
