@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/layout';
 import axios from 'axios';
+import styles from '../styles/user.module.scss';
 
 export default function Home({users}) {
 
@@ -17,9 +18,9 @@ export default function Home({users}) {
       <main>
         <h3>Hello world</h3>
         <div>
-          <ul>
+          <div className={styles.userList}>
           {users && users.map(user => (
-            <li key={user.id}>
+            <div className={styles.userItem} key={user.id}>
               <span>{user.username}</span>&nbsp;
               <Link href={`/user/${user.id}/view`}>
                 <a>View</a>
@@ -27,10 +28,10 @@ export default function Home({users}) {
               <Link href={`/user/${user.id}/update`}>
                 <a>Update</a>
               </Link>
-            </li>
+            </div>
           )
           )}
-          </ul>
+          </div>
         </div>
         <Link href='/user/create'><a>Create user</a></Link>
       </main>
@@ -43,13 +44,13 @@ export async function getServerSideProps(){
   console.log("executed on server");
 
   //for now I need the full url, it fails when I put in just /api/users
-  const request = await axios.get('/api/users');
+  const request = await axios.get('http://localhost:3000/api/users');
   const users = request.data;
 
-  return {
-    props: {
-      users
+    return {
+      props: {
+        users
+      }
     }
-  }
 
 }

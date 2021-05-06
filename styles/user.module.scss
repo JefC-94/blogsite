@@ -1,0 +1,46 @@
+
+// USER OVERVIEW STYLING
+
+div.userList{
+    
+    div.userItem{
+        padding:.5em 0;
+    }
+}
+
+// USER ITEM IN TABLE + DETAIL USER ITEM
+
+div.userDetail{
+    font-size:18px;
+}
+
+
+//FORM STYLING
+
+.userForm{
+    margin:1em auto;
+    max-width:400px;
+    display:flex;
+    flex-direction:column;
+
+    .formControl{
+        width:100%;
+        margin:.5em 0 1em 0;   
+
+        label{
+            font-size:18px;
+        }
+
+        input, button{
+            width:100%;
+            height:40px;
+        }
+
+        input{
+            padding-left:10px;
+            font-size:18px;
+        }
+    }
+
+}
+
