@@ -43,7 +43,7 @@ export async function getServerSideProps(){
   console.log("executed on server");
 
   //for now I need the full url, it fails when I put in just /api/users
-  const request = await axios.get('http://localhost:3000/api/users');
+  const request = await axios.get('/api/users');
   const users = request.data;
 
   return {

@@ -26,7 +26,7 @@ export default function User({user}) {
 export async function getServerSideProps(context){
     console.log("executed on server");
     const id = context.params.id;
-    const request = await axios.get(`http://localhost:3000/api/user/${id}`);
+    const request = await axios.get(`/api/user/${id}`);
     const user = request.data;
 
     return {

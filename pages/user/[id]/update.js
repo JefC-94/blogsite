@@ -45,7 +45,7 @@ export async function getServerSideProps(context){
     const id = context.params.id;
     console.log(id);
 
-    const request = await axios.get(`http://localhost:3000/api/user/${id}`);
+    const request = await axios.get(`/api/user/${id}`);
     console.log(request.data);
     const user = request.data;
 
