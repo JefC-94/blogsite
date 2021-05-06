@@ -1,7 +1,9 @@
 import axios from 'axios';
+import Link from 'next/link';
 import React, {useState} from 'react'
+import Layout from '../../components/layout';
 
-function AddUser() {
+export default function CreateUser() {
     
     const [formData, setFormData] = useState({
         nameField: "",
@@ -25,15 +27,16 @@ function AddUser() {
     }
     
     return (
-        <div>
+        <Layout>
+            <div>
             <form onSubmit={onSubmitHandler} >
                 <input type="text" value={formData.nameField} name="nameField" onChange={onChangeHandler} />
-                <input type="password" name="passField" value={formData.passField} onChange={onChangeHandler} />
+                <input type="text" name="passField" value={formData.passField} onChange={onChangeHandler} />
                 <button type="submit">Add user</button>
-                {JSON.stringify(formData)}
             </form>
-        </div>
+            </div>
+            <Link href='/'>Back to users</Link>
+        </Layout>
     )
 }
 
-export default AddUser
