@@ -1,19 +1,10 @@
 import React, {useEffect} from 'react';
-import Head from 'next/head'
-import Layout from '../components/layout'
+import Head from 'next/head';
+import Link from 'next/link';
+import Layout from '../components/layout';
+import axios from 'axios';
 
-export default function Home() {
-
-  useEffect(() => {
-    fetch('/api/hello')
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-    });
-    return () => {
-      
-    }
-  }, [])
+export default function Home({users}) {
 
   return (
     <Layout>
@@ -25,8 +16,29 @@ export default function Home() {
 
       <main>
         <h3>Hello world</h3>
+        {users && users.map(user => (
+          <li key={user.id}>
+            <Link href={`/user/${user.id}`}><a>{user.username}</a></Link> 
+          </li>
+        )
+        )}
       </main>
       
     </Layout>
   )
+}
+
+export async function getServerSideProps(){
+  console.log("executed on server");
+
+  //for now I need the full url, it fails when I put in just /api/users
+  const request = await axios.get('http://localhost:3000/api/users');
+  const users = request.data;
+
+  return {
+    props: {
+      users
+    }
+  }
+
 }
